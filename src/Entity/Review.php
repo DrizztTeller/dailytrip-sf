@@ -27,6 +27,10 @@ class Review
     #[ORM\JoinColumn(nullable: false)]
     private ?Trip $trip = null;
 
+    #[ORM\ManyToOne(inversedBy: 'reviews')]
+    #[ORM\JoinColumn(nullable: false)]
+    private ?User $reviewer = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -76,6 +80,18 @@ class Review
     public function setTrip(?Trip $trip): static
     {
         $this->trip = $trip;
+
+        return $this;
+    }
+
+    public function getReviewer(): ?User
+    {
+        return $this->reviewer;
+    }
+
+    public function setReviewer(?User $reviewer): static
+    {
+        $this->reviewer = $reviewer;
 
         return $this;
     }

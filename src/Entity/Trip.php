@@ -57,6 +57,10 @@ class Trip
     #[ORM\JoinColumn(nullable: false)]
     private ?Localisation $localisation = null;
 
+    #[ORM\ManyToOne(inversedBy: 'trips')]
+    #[ORM\JoinColumn(nullable: false)]
+    private ?User $author = null;
+
     public function __construct()
     {
         $this->ratings = new ArrayCollection();
@@ -242,6 +246,18 @@ class Trip
     public function setLocalisation(Localisation $localisation): static
     {
         $this->localisation = $localisation;
+
+        return $this;
+    }
+
+    public function getAuthor(): ?User
+    {
+        return $this->author;
+    }
+
+    public function setAuthor(?User $author): static
+    {
+        $this->author = $author;
 
         return $this;
     }

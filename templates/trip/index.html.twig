@@ -1,0 +1,14 @@
+{% extends 'base.html.twig' %} 
+{% block title %}{{ title }}{% endblock %} 
+{% block description %}{{ description }}{% endblock %} 
+{% block body %}
+{# {{ dump(trips) }} #}
+
+{% for item in trips %}
+    {# {{ dump(item) }} #}
+    {{ item.title }}
+    {{ item.category.name }}
+    <a href="{{ path('app_trip', { 'ref':item.ref }) }}" >Voir</a>
+    
+    <hr>
+{% endfor %} {% endblock %}

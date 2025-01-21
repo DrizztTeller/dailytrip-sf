@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %} 
+{% block title %}{{ 'Catégories' |trans }}{% endblock %}
+{% block body %}
+{{ dump(path("app_category")) }}
+<div class="example-wrapper">
+  {% for item in categories %} 
+  {{item.name |trans}}
+    {{ dump(item.name) }}
+  {% endfor %}
+</div>
+{% endblock %}
