@@ -42,15 +42,15 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     private Collection $trips;
 
     /**
-     * @var Collection<int, review>
+     * @var Collection<int, Review>
      */
-    #[ORM\OneToMany(targetEntity: review::class, mappedBy: 'reviewer')]
+    #[ORM\OneToMany(targetEntity: Review::class, mappedBy: 'reviewer')]
     private Collection $reviews;
 
     /**
-     * @var Collection<int, rating>
+     * @var Collection<int, Rating>
      */
-    #[ORM\OneToMany(targetEntity: rating::class, mappedBy: 'evaluator')]
+    #[ORM\OneToMany(targetEntity: Rating::class, mappedBy: 'evaluator')]
     private Collection $ratings;
 
     #[ORM\Column(length: 80, nullable: true)]
@@ -170,7 +170,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     }
 
     /**
-     * @return Collection<int, review>
+     * @return Collection<int, Review>
      */
     public function getReviews(): Collection
     {
