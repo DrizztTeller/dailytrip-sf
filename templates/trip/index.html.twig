@@ -1,8 +1,20 @@
 {% extends 'base.html.twig' %} {% block title %}{{ parent() }} - {{ title }}{%
-endblock %} {% block description %}{{ description }}{% endblock %} {% block body
+endblock %} {% block description %}{{ description }}{% endblock %}
+
+{% block stylesheets %}
+{{ parent() }}
+{{ knp_pagination_rel_links(trips)}}
+{% endblock %}
+
+{% block body
 %} {# {{ dump(trips) }} #}
 <div class="my-4">
     <h1 class="fs-1 text-bold">Toutes les aventures partagées</h1>
+</div>
+
+{# total items count #}
+<div class="count">
+    {{ trips.getTotalItemCount }}
 </div>
 
 <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
@@ -34,5 +46,10 @@ endblock %} {% block description %}{{ description }}{% endblock %} {% block body
         </div>
     </div>
     {% endfor %}
+</div>
+
+{# display navigation #}
+<div class="navigation">
+    {{ knp_pagination_render(trips) }}
 </div>
 {% endblock %}
