@@ -1,14 +1,38 @@
-{% extends 'base.html.twig' %} 
-{% block title %}{{ title }}{% endblock %} 
-{% block description %}{{ description }}{% endblock %} 
-{% block body %}
-{# {{ dump(trips) }} #}
+{% extends 'base.html.twig' %} {% block title %}{{ parent() }} - {{ title }}{%
+endblock %} {% block description %}{{ description }}{% endblock %} {% block body
+%} {# {{ dump(trips) }} #}
+<div class="my-4">
+    <h1 class="fs-1 text-bold">Toutes les aventures partagées</h1>
+</div>
 
-{% for item in trips %}
-    {# {{ dump(item) }} #}
-    {{ item.title }}
-    {{ item.category.name }}
-    <a href="{{ path('app_trip', { 'ref':item.ref }) }}" >Voir</a>
-    
-    <hr>
-{% endfor %} {% endblock %}
+<div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+    {% for item in trips %}
+    <div class="col">
+        <div class="card shadow-m">
+            <img src="{{ item.cover }}" alt="{{ item.title }}" height="225" width="100%" class="card-img-top img-fluid">
+            <title>{{ item.title }}</title>
+            <rect width="100%" height="100%" fill="#55595c"></rect>
+            <h4 class="text-center mt-1">{{ item.title }}</h4>
+            </svg>
+            <div class="card-body">
+                <p class="card-text">
+                    {{ item.description ? item.description|slice(0, 30) : '' }}...
+                </p>
+                <div class="d-flex justify-content-between align-items-center">
+                    <div class="btn-group">
+                        <a href="{{ path('app_trip', { 'ref': item.ref }) }}"
+                            class="btn btn-sm btn-outline-secondary ">Découvrir</a>
+                        {% if app.user  %}
+                        <button type="button" class="btn btn-sm btn-outline-secondary">
+                            Edit
+                        </button>
+                        {% endif %}
+                    </div>
+                    <small class="text-body-secondary">{{item.localisation.distance}} km</small>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+{% endblock %}

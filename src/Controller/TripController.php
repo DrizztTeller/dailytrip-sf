@@ -14,7 +14,7 @@ class TripController extends AbstractController
     {
         return $this->render('trip/index.html.twig', [
             'trips' => $tR->findBy(
-                [], ['id'=>'ASC'], 10,
+                [], ['id'=>'ASC']
             ),
             'title' => 'Trips',
             'description' => 'Les trips disponibles sur la plateforme. 100% made by you !',
