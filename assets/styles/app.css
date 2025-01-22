@@ -59,3 +59,10 @@ h1, h2, h3, h4, h5, h6 {
 .splide__slide.rounded::marker {
   content: '';
 }
+
+div.navigation {
+  width: fit-content;
+}
+ul.pagination {
+  gap: 0.75rem;
+}
